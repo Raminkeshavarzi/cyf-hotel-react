@@ -1,5 +1,7 @@
 import React from "react";
 
+import SeacrhButton from "../UI/Button/SearchButton";
+
 const Search = () => {
   return (
     <div className="search">
@@ -17,7 +19,7 @@ const Search = () => {
                 className="form-control"
                 placeholder="Customer name"
               />
-              <button className="btn btn-primary">Search</button>
+              <SeacrhButton />
             </div>
           </form>
         </div>

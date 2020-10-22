@@ -1,0 +1,13 @@
+.Header {
+  display: flex;
+}
+
+.logo {
+  vertical-align: middle;
+  border-style: none;
+  display: flex;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
