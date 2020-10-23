@@ -11,7 +11,7 @@ const SearchResults = props => {
     <div className="Table">
       <p>Results ({props.searchNumber} found)</p>
       <table className="table">
-        <thead class="thead-dark">
+        <thead className="thead-dark">
           <tr>
             <th scope="col">Title</th>
             <th scope="col">first name</th>
@@ -24,7 +24,7 @@ const SearchResults = props => {
           </tr>
         </thead>
         <tbody>
-          {props.data.map(item => (
+          {props.data.map((item, idx) => (
             <tr>
               <th scope="row">{item.title}</th>
               <td>{item.firstName}</td>
@@ -40,6 +40,7 @@ const SearchResults = props => {
                   checkOut.diff(checkIn, "days"))
                 }
               </td>
+              <td style={{ display: "none" }}> {idx} </td>
             </tr>
           ))}
         </tbody>

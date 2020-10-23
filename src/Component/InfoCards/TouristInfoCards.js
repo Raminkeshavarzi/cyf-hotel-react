@@ -4,13 +4,13 @@ import React from "react";
 import "./TouristInfoCards.css";
 const TouristInfoCards = props => {
   return (
-    <div class="card">
-      <div class="card-body">
-        <img src={props.img} class="card-img-top" alt={props.name} />
-        <h5 class="card-title"> {props.name} </h5>
-        <p class="card-text">{props.description}</p>
-        <a href={props.href} class="btn btn-primary" target="_blank">
-          Go somewhere
+    <div className="card">
+      <div className="card-body">
+        <img src={props.img} className="card-img-top" alt={props.name} />
+        <h5 className="card-title"> {props.name} </h5>
+        <p className="card-text">{props.description}</p>
+        <a href={props.href} className="btn btn-primary" target="_blank">
+          Go To {props.name}
         </a>
       </div>
     </div>

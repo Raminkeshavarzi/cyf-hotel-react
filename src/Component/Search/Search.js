@@ -19,7 +19,7 @@ const Search = () => {
                 className="form-control"
                 placeholder="Customer name"
               />
-              <SeacrhButton />
+              <SeacrhButton class={"btn btn-primary"} text={"Search"} />
             </div>
           </form>
         </div>

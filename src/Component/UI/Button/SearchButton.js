@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 function SearchButton(props) {
   return (
     <div>
-      <button className="btn btn-primary">Search</button>
+      <button className={props.class}>{props.text}</button>
     </div>
   );
 }
