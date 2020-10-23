@@ -18,7 +18,7 @@ const Bookings = () => {
         <SearchResults
           data={FakeBookings}
           searchNumber={FakeBookings.length}
-          key={FakeBookings.id}
+          // key={FakeBookings.id}
         />
       </div>
     </div>
