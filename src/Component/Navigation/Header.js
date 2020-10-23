@@ -11,6 +11,23 @@ function Header() {
         alt="logo"
         className="logo"
       />
+      <ul className="subNav">
+        <li>
+          <a href="./" className="links">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="/cities" className="links">
+            City
+          </a>
+        </li>
+        <li>
+          <a href="./booking" className="links">
+            Book
+          </a>
+        </li>
+      </ul>
     </div>
   );
 }

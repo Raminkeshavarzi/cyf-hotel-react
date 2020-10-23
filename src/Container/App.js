@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 // Component
 import Bookings from "../Component/Bookings";
 import Header from "../Component/Navigation/Header";
@@ -11,12 +11,19 @@ import "./App.css";
 
 const App = () => {
   return (
-    <div className="App">
-      <Header />
-      <Cities />
-      <Bookings />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        {/* Routers */}
+        <Switch>
+          <Route path="./" exact component={(Header, Footer)} />
+          <Route path="/Cities" component={Cities} />
+          <Route path="/Booking" component={Bookings} />
+        </Switch>
+        {/* Footer */}
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 };
 
