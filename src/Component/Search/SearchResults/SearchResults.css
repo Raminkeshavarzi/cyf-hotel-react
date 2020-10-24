@@ -6,7 +6,11 @@
 h6 {
   text-align: center;
 }
-
+.highlight:hover {
+  background-color: lightgray;
+  color: darkred;
+  font-weight: 400;
+}
 @media (max-width: 800px) {
   .Table {
     overflow: scroll;

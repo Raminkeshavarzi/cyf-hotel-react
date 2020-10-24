@@ -6,6 +6,7 @@ import SlideShow from "../UI/sliderShow/SlideShow";
 import Cities from "../InfoCards/cities/Cities";
 import Bookings from "../Bookings";
 import Footer from "./Footer/Footer";
+import Restaurant from "../Restaurant/Restaurant";
 
 // CSS
 import "./Header.css";
@@ -48,6 +49,11 @@ const Header = () => {
             </Link>
           </li>
           <li>
+            <Link to={setAuth ? "/home/restaurant" : "/home"} className="links">
+              Restaurant
+            </Link>
+          </li>
+          <li>
             <Link to="/home/booking" className="links" onClick={onLogHandler}>
               {setAuth ? "Log Out" : "Log In"}
             </Link>
@@ -63,8 +69,11 @@ const Header = () => {
       </div>
       <Route path="/home" exact component={SlideShow} />
       <Switch>
-        {setAuth ? <Route path="/home/Booking" component={Bookings} /> : null}
         <Route path="/home/Cities" component={Cities} />
+        {setAuth ? <Route path="/home/Booking" component={Bookings} /> : null}
+        {setAuth ? (
+          <Route path="/home/restaurant" component={Restaurant} />
+        ) : null}
         <Redirect from="/" to="/home" component={SlideShow} />
       </Switch>
       <Footer />
