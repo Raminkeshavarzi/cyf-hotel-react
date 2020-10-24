@@ -20,7 +20,7 @@ const SlideShow = () => {
 
   return (
     <div className="slider">
-      <img src={randomPhoto} className="photo" />
+      <img src={randomPhoto} alt="london" className="photo" />
     </div>
   );
 };

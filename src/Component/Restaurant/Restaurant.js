@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
 // Component
-import SearchButton from "../UI/Button/SearchButton";
+import MenuCard from "./RestaurantMenu/MenuCard";
 
 // CSS
 import "./Restaurant.css";
-import MenuCard from "./RestaurantMenu/MenuCard";
 const Restaurant = props => {
   const [setPizza, setPizzaState] = useState(0);
   const [setSalad, setSaladState] = useState(0);
