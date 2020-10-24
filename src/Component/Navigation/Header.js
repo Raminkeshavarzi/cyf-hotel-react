@@ -54,6 +54,11 @@ const Header = () => {
           </li>
         </ul>
       </div>
+      <div className="message">
+        <h3 className={!setAuth ? "warning" : "greeting"}>
+          {setAuth ? "Welcome to CYF Hotel" : "Please Log In"}
+        </h3>
+      </div>
       <Route path="/home" exact component={SlideShow} />
       <Switch>
         {setAuth ? <Route path="/home/Booking" component={Bookings} /> : null}

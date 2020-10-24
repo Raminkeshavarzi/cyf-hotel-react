@@ -12,3 +12,23 @@ img.photo {
   margin: 0 auto;
   border-radius: 40px;
 }
+
+.message {
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+.warning {
+  color: darkred;
+  font-size: 1.9rem;
+  padding: 10px;
+  margin: 10px;
+}
+.greeting {
+  color: darkgoldenrod;
+  font-size: 1.9rem;
+  padding: 10px;
+  margin: 10px;
+}
