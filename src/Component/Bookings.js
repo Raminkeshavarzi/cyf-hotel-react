@@ -14,8 +14,8 @@ const Bookings = () => {
 
   return (
     <div className="App-content">
+      <SlideShow />
       <div className="container">
-        <SlideShow />
         <Search search={search} />
         <SearchResults data={FakeBookings} searchNumber={FakeBookings.length} />
       </div>
