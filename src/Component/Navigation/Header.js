@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, Switch, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Switch, Route, Redirect } from "react-router-dom";
 
 // Component
 import SlideShow from "../UI/sliderShow/SlideShow";
@@ -9,7 +9,19 @@ import Footer from "./Footer/Footer";
 
 // CSS
 import "./Header.css";
-function Header() {
+const Header = () => {
+  const [setAuth, setAuthState] = useState(false);
+
+  // Event handler
+  const onLogHandler = () => {
+    if (setAuth === false) {
+      setAuthState(true);
+    } else {
+      setAuthState(false);
+    }
+    console.log(setAuth);
+  };
+
   return (
     <div className="App">
       <header className="App-header">CYF Hotel</header>
@@ -31,20 +43,26 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link to="/home/booking" className="links">
+            <Link to={setAuth ? "/home/booking" : "/home"} className="links">
               Book
+            </Link>
+          </li>
+          <li>
+            <Link to="/home/booking" className="links" onClick={onLogHandler}>
+              {setAuth ? "Log Out" : "Log In"}
             </Link>
           </li>
         </ul>
       </div>
       <Route path="/home" exact component={SlideShow} />
       <Switch>
+        {setAuth ? <Route path="/home/Booking" component={Bookings} /> : null}
         <Route path="/home/Cities" component={Cities} />
-        <Route path="/home/Booking" component={Bookings} />
+        <Redirect from="/" to="/home" component={SlideShow} />
       </Switch>
       <Footer />
     </div>
   );
-}
+};
 
 export default Header;
