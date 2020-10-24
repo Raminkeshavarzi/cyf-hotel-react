@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SlideShow from "../../UI/sliderShow/SlideShow";
 
 // Component
 import TouristInfoCards from "../TouristInfoCards";
@@ -35,6 +36,7 @@ const Cities = () => {
   ]);
   return (
     <div>
+      <SlideShow />
       {setCities.map(city => {
         return (
           <TouristInfoCards

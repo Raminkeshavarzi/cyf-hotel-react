@@ -5,6 +5,7 @@ import Bookings from "../Component/Bookings";
 import Header from "../Component/Navigation/Header";
 import Cities from "../Component/InfoCards/cities/Cities";
 import Footer from "../Component/Navigation/Footer/Footer";
+import SlideShow from "../Component/UI/sliderShow/SlideShow";
 
 // Css
 import "./App.css";
@@ -15,13 +16,6 @@ const App = () => {
       <div className="App">
         <Header />
         {/* Routers */}
-        <Switch>
-          <Route path="./" exact component={(Header, Footer)} />
-          <Route path="/Cities" component={Cities} />
-          <Route path="/Booking" component={Bookings} />
-        </Switch>
-        {/* Footer */}
-        <Footer />
       </div>
     </BrowserRouter>
   );

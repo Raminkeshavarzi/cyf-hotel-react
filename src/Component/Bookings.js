@@ -4,6 +4,7 @@ import React from "react";
 import Search from "../Component/Search/Search";
 import SearchResults from "../Component/Search/SearchResults/SearchResults";
 import FakeBookings from "../data/fakeBookings.json";
+import SlideShow from "../Component/UI/sliderShow/SlideShow";
 
 const Bookings = () => {
   const search = searchVal => {
@@ -14,12 +15,9 @@ const Bookings = () => {
   return (
     <div className="App-content">
       <div className="container">
+        <SlideShow />
         <Search search={search} />
-        <SearchResults
-          data={FakeBookings}
-          searchNumber={FakeBookings.length}
-          // key={FakeBookings.id}
-        />
+        <SearchResults data={FakeBookings} searchNumber={FakeBookings.length} />
       </div>
     </div>
   );
