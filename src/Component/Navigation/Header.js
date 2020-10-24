@@ -54,6 +54,8 @@ const Header = () => {
           </li>
         </ul>
       </div>
+
+      {/* Message based on auth status */}
       <div className="message">
         <h3 className={!setAuth ? "warning" : "greeting"}>
           {setAuth ? "Welcome to CYF Hotel" : "Please Log In"}
