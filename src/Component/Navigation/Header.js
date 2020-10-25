@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link, Switch, Route, Redirect } from "react-router-dom";
+import { Link, Switch, Route, Redirect, useHistory } from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap";
 
 // Component
 import SlideShow from "../UI/sliderShow/SlideShow";
@@ -7,59 +8,90 @@ import Cities from "../InfoCards/cities/Cities";
 import Bookings from "../Bookings";
 import Footer from "./Footer/Footer";
 import Restaurant from "../Restaurant/Restaurant";
+import Update from "../Form/UpdateForm/Update";
+import { useAuth } from "../../Context/AuthContext";
 
 // CSS
 import "./Header.css";
 const Header = () => {
-  const [setAuth, setAuthState] = useState(false);
+  const [setAuth, setAuthState] = useState(true);
+  const [setError, setErrorState] = useState("");
 
-  // Event handler
-  const onLogHandler = () => {
-    if (setAuth === false) {
-      setAuthState(true);
-    } else {
+  // ref
+  const history = useHistory();
+
+  // Auth
+  const { logout } = useAuth();
+
+  async function logoutHandler() {
+    setErrorState("");
+    try {
+      await logout();
       setAuthState(false);
+      history.push("/login");
+    } catch {
+      setAuthState(true);
+      setErrorState("Failed To Sign Out");
     }
-    console.log(setAuth);
-  };
-
+  }
   return (
     <div className="App">
-      <header className="App-header">CYF Hotel</header>
-      <img
-        src="https://image.flaticon.com/icons/svg/139/139899.svg"
-        alt="logo"
-        className="logo"
-      />
-      <div className="subNav">
-        <ul className="subNav">
-          <li>
-            <Link to="/home" className="links">
+      <Navbar bg="dark" variant="light" expand={"sm" | "md" | "lg" | "xl"}>
+        {/* <ul className="subNav"> */}
+        <Navbar.Brand href="#home">
+          <img
+            src="https://image.flaticon.com/icons/svg/139/139899.svg"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav>
+            <Link to="/loged-in/home" className="links">
               Home
             </Link>
-          </li>
-          <li>
-            <Link to="/home/cities" className="links">
+          </Nav>
+          <Nav>
+            <Link to="/loged-in/home/cities" className="links">
               City
             </Link>
-          </li>
-          <li>
-            <Link to={setAuth ? "/home/booking" : "/home"} className="links">
+          </Nav>
+          <Nav>
+            <Link
+              to={setAuth === false ? "/home" : "/loged-in/home/booking"}
+              className="links"
+            >
               Book
             </Link>
-          </li>
-          <li>
-            <Link to={setAuth ? "/home/restaurant" : "/home"} className="links">
+          </Nav>
+          <Nav>
+            <Link
+              to={setAuth === false ? "/home" : "/loged-in/home/restaurant"}
+              className="links"
+            >
               Restaurant
             </Link>
-          </li>
-          <li>
-            <Link to="/home/booking" className="links" onClick={onLogHandler}>
-              {setAuth ? "Log Out" : "Log In"}
+          </Nav>
+          <Nav>
+            <Link
+              to={
+                setAuth === false ? "/login" : "/loged-in/home/update-profile"
+              }
+              className="links"
+            >
+              Profile
             </Link>
-          </li>
-        </ul>
-      </div>
+          </Nav>
+          <Nav>
+            <Link to="/login" className="links" onClick={logoutHandler}>
+              Log Out
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
 
       {/* Message based on auth status */}
       <div className="message">
@@ -67,14 +99,34 @@ const Header = () => {
           {setAuth ? "Welcome to CYF Hotel" : "Please Log In"}
         </h3>
       </div>
-      <Route path="/home" exact component={SlideShow} />
+      <Route path="/loged-in/home/" exact component={SlideShow} />
       <Switch>
-        <Route path="/home/Cities" component={Cities} />
-        {setAuth ? <Route path="/home/Booking" component={Bookings} /> : null}
-        {setAuth ? (
-          <Route path="/home/restaurant" component={Restaurant} />
-        ) : null}
-        <Redirect from="/" to="/home" component={SlideShow} />
+        <Route path="/loged-in/home/Cities" component={Cities} />
+        {setAuth === false ? (
+          <Route path="/home" exact component={SlideShow} />
+        ) : (
+          <Route path="/loged-in/home/booking" exact component={Bookings} />
+        )}
+        {setAuth === false ? (
+          <Route path="/home" exact component={SlideShow} />
+        ) : (
+          <Route
+            path="/loged-in/home/restaurant"
+            exact
+            component={Restaurant}
+          />
+        )}
+        {setAuth === false ? (
+          <Route path="/home" exact component={SlideShow} />
+        ) : (
+          <Route
+            path="/loged-in/home/update-profile"
+            exact
+            component={Update}
+          />
+        )}
+
+        <Redirect from="/" exact to="/home" component={SlideShow} />
       </Switch>
       <Footer />
     </div>
